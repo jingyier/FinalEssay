@@ -1,0 +1,19 @@
+﻿dimension,statistical_top3,top3_mean_bootstrap_frequency,top3_origins,chemical_reference,reference_origin,reference_basis,reference_spearman,reference_absolute_rank_among_217,reference_in_statistical_top3,reference_bootstrap_frequency_if_selected,review_verdict
+dms,E.nerolidol; terpinen.4.ol; car.3.en.2.one,0.19000000000000003,Hops; Spices; Hops,DMS,Malt,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,0.08786012853043478,84,False,,化学锚点未获样本关联支持；Top-3只能视为风格相关标志
+diacetyl,eugenol; ethyl_decanoate; alpha.calacorene,0.4633333333333333,Spices; Yeast; Hops,X2.3.butanedione,Yeast,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,-0.10102102316237241,79,False,,化学锚点未获样本关联支持；Top-3只能视为风格相关标志
+t2n,beta.phellandrene; geraniol; terpinen.4.ol,0.22666666666666666,Hops; Hops; Spices,X.E..2.nonenal,Others,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,-0.15050117334882385,16,False,,化学锚点未获样本关联支持；Top-3只能视为风格相关标志
+X4vg,X4VG; neryl.formate; delta.terpinyl.acetate,0.5616666666666666,Yeast; Hops; Hops,X4VG,Yeast,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,0.47261752961228276,1,True,0.945,名称及统计关联相符；仍不能推断因果
+lactic,lactic_acid.mg.L.; perillyl.acetate; acetic_acid.g.L.,0.5,Wild flora; Spices; Wild flora,lactic_acid.mg.L.,Wild flora,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,0.4475322568342476,1,True,0.585,名称及统计关联相符；仍不能推断因果
+acetic,prenyl.isobutyrate; ethyl_isovalerate; acetic_acid.g.L.,0.47666666666666674,Yeast; Others; Wild flora,acetic_acid.g.L.,Wild flora,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,0.3543263650185447,6,True,0.31,名称对应但Top-3入选不稳
+alcohol,ethanol..v.v.; glycerol; ethyl_hexanoate,0.6333333333333334,Yeast; Yeast; Yeast,ethanol..v.v.,Yeast,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,0.8171474389230694,1,True,1.0,名称及统计关联相符；仍不能推断因果
+co2,ethyl_octanoate; ethanol..v.v.; CO2.PSI.,0.7483333333333334,Yeast; Yeast; Others,CO2.PSI.,Others,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,0.4611183774867171,4,True,0.535,名称及统计关联相符；仍不能推断因果
+A_esters_ethac,ethyl_acetate; acetaldehyde; isoamyl_alcohol,0.4000000000000001,Yeast; Yeast; Yeast,ethyl_acetate,Yeast,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,0.35550458495645076,1,True,0.555,名称及统计关联相符；仍不能推断因果
+A_esters_isoaa,n.hexanol; isopentyl_acetate; tau.cadinol,0.5650000000000001,Yeast; Yeast; Hops,isopentyl_acetate,Yeast,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,0.2828145982352666,2,True,0.585,名称及统计关联相符；仍不能推断因果
+F_esters_ethac,ethyl_acetate; ethanol..v.v.; glycerol,0.8216666666666667,Yeast; Yeast; Yeast,ethyl_acetate,Yeast,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,0.5030965444139196,1,True,0.975,名称及统计关联相符；仍不能推断因果
+F_esters_isoaa,n.hexanol; isopentyl_acetate; acetaldehyde,0.47666666666666674,Yeast; Yeast; Yeast,isopentyl_acetate,Yeast,感官维度直接命名或对应化合物；部分缺陷描述见8.xlsx,0.2736296895926277,2,True,0.455,名称对应但Top-3入选不稳
+A_hops_tropical,DMS; citronellol; methyl.geranate,0.395,Malt; Hops; Hops,methyl.geranate,Hops,8.xlsx来源为Hops的最强样本关联；来源一致不等于致味证据,0.25588619036798754,3,True,0.255,Top-3含同来源化学候选；具体致味联系尚需证据
+F_hops_tropical,geraniol; DMS; hexyl.acetate,0.4383333333333333,Hops; Malt; Yeast,geraniol,Hops,8.xlsx来源为Hops的最强样本关联；来源一致不等于致味证据,0.2848252338769932,1,True,0.405,Top-3含同来源化学候选；具体致味联系尚需证据
+A_hops_noble,ethyl_octanoate; ethyl_decanoate; X.E..2.nonenal,0.7433333333333333,Yeast; Yeast; Others,X1.2.dihydro.8.hydroxy..2E..linalool,Hops,8.xlsx来源为Hops的最强样本关联；来源一致不等于致味证据,0.3631283309544384,6,False,,Top-3未含该类最强来源候选；可能是风格相关标志
+A_malt_all,acetaldehyde; methylpyrazine; beta.phellandrene,0.5066666666666667,Yeast; Malt; Hops,methylpyrazine,Malt,8.xlsx来源为Malt的最强样本关联；来源一致不等于致味证据,0.35605742650672,2,True,0.61,Top-3含同来源化学候选；具体致味联系尚需证据
+F_malt_all,acetaldehyde; ethanol..v.v.; MeSH,0.6766666666666666,Yeast; Yeast; Yeast,methylpyrazine,Malt,8.xlsx来源为Malt的最强样本关联；来源一致不等于致味证据,0.31049989618738044,8,False,,Top-3未含该类最强来源候选；可能是风格相关标志
+A_esters_flower,beta.phellandrene; isobutyl_acetate; E.caryophyllene,0.225,Hops; Yeast; Hops,isobutyl_acetate,Yeast,8.xlsx来源为Yeast的最强样本关联；来源一致不等于致味证据,0.19171916846080253,2,True,0.21,Top-3含同来源化学候选；具体致味联系尚需证据

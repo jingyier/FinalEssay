@@ -1,0 +1,2 @@
+﻿model,n_real,n_Tripel,n_PilsLager,LOOCV_accuracy,LOOCV_Tripel_recall,LOOCV_PilsLager_specificity,migration_probability_mean_before,migration_probability_mean_after,migration_probability_increased_count,migration_classified_Tripel_before,migration_classified_Tripel_after
+8-marker ridge logistic; original spectra only; leave-one-out CV,39,28,11,0.9743589743589743,1.0,0.9090909090909091,0.20075828132992066,0.8271709762182756,10,0,10

@@ -1,0 +1,13 @@
+﻿check,passed,value
+22 styles x 50 generated,True,1100.0
+231 chemical columns and 50 proxy sensory outputs,True,231.0
+"generated spectra finite, unique",True,0.0
+"11 Pils/Lager migrations, source IDs match",True,11.0
+10 move closer; 1 held unchanged under continuous defect constraint,True,10.0
+all observed defects pointwise nonincreasing,True,5.0
+2 missing diacetyl source cells explicitly marked,True,2.0
+8-marker independent discriminator rises for 10 moved samples,True,10.0
+migration grid sensitivity remains 10/11 improved across 0.05/0.10/0.20,True,10.0
+limited Tripel holdout explicitly documented,True,1.0
+5 derived fields consistent in generated outputs,True,2.55351295663786e-15
+5 derived fields consistent in migrated outputs,True,4.440892098500626e-16

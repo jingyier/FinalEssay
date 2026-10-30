@@ -1,0 +1,23 @@
+{
+  "real_n": 250,
+  "generated_n": 250,
+  "latent_dimensions": 65,
+  "c2st_auc_mean": 0.45992,
+  "c2st_auc_sd": 0.04035978196174997,
+  "c2st_accuracy_mean": 0.462,
+  "fold_auc": [
+    0.48839999999999995,
+    0.424,
+    0.4532,
+    0.5132,
+    0.42080000000000006
+  ],
+  "fold_accuracy": [
+    0.48,
+    0.42,
+    0.46,
+    0.52,
+    0.43
+  ],
+  "interpretation": "Internal two-sample diagnostic; AUC near 0.5 means the classifier cannot easily distinguish observed and generated spectra in this representation."
+}

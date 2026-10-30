@@ -1,0 +1,63 @@
+{
+  "selection_rule": "maximize dev OOF exact proxy-grade agreement; then within-one agreement",
+  "selected": "direct_training_anchors",
+  "dev_oof": {
+    "direct_training_anchors": {
+      "exact": 0.39932773109243697,
+      "within1": 0.851764705882353,
+      "histogram": {
+        "0": 972,
+        "1": 4014,
+        "2": 3993,
+        "3": 2286,
+        "4": 594,
+        "5": 41
+      }
+    },
+    "oof_variance_matched": {
+      "exact": 0.3847058823529412,
+      "within1": 0.7877310924369748,
+      "histogram": {
+        "0": 2708,
+        "1": 3043,
+        "2": 2436,
+        "3": 1912,
+        "4": 1194,
+        "5": 460,
+        "6": 147
+      }
+    }
+  },
+  "holdout_posthoc": {
+    "direct_training_anchors": {
+      "exact": 0.38,
+      "within1": 0.83,
+      "histogram": {
+        "0": 60,
+        "1": 210,
+        "2": 201,
+        "3": 99,
+        "4": 29,
+        "5": 1
+      }
+    },
+    "oof_variance_matched": {
+      "exact": 0.43333333333333335,
+      "within1": 0.805,
+      "histogram": {
+        "0": 145,
+        "1": 149,
+        "2": 135,
+        "3": 86,
+        "4": 62,
+        "5": 20,
+        "6": 3
+      }
+    }
+  },
+  "variance_match_scale_min_mean_max": [
+    1.3222622372109465,
+    2.561154835580989,
+    4.194552187509749
+  ]
+}

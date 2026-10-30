@@ -54,6 +54,7 @@ def main():
         run([sys.executable, str(PROJECT/"A_problem1_v3_trees/src/solve_problem1_v3.py")], env)
     run([sys.executable, str(PROJECT/"A_full_solution_v4/q2/src/solve_q2.py"), "--input-dir", str(inp), "--bootstrap", str(args.bootstrap)], env)
     run([sys.executable, str(PROJECT/"A_full_solution_v4/q3/src/solve_q3_v4.py")], env)
+    run([sys.executable, str(PROJECT/"sync_outputs.py")], env)
     after={k:{"sha256":sha256(p),"shape":shape(p)} for k,p in KEY_FILES.items() if p.exists()}
     diffs={k:{"before":before.get(k),"after":after.get(k)} for k in set(before)|set(after) if before.get(k)!=after.get(k)}
     args.output_dir.mkdir(parents=True, exist_ok=True)

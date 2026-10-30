@@ -1,0 +1,232 @@
+﻿chemical_name,degree,isolated
+Acetaldehyde,1,False
+Carbon disulfide,0,True
+Diethyl sulfide,0,True
+Dimethyl sulfide,1,False
+Ethyl 2-methylbutyrate,1,False
+Ethyl acetate,4,False
+Ethyl decanoate,4,False
+Ethyl hexanoate,4,False
+Ethyl 3-methylbutyrate,1,False
+Ethyl octanoate,3,False
+Ethyl propionate,0,True
+Hydrogen sulfide,1,False
+Isoamyl alcohol,1,False
+Isobutanol,2,False
+Isobutyl acetate,3,False
+Isoamyl acetate,4,False
+Methanethiol,0,True
+Octyl acetate,0,True
+Phenethyl acetate,1,False
+Phenethyl alcohol,0,True
+4-vinylguaiacol,0,True
+Sulfur dioxide,0,True
+Acetic acid,1,False
+Ammonia,0,True
+Color,1,False
+Betaglucan,0,True
+Lactic acid,0,True
+Glycerol,1,False
+Iron,0,True
+pH,0,True
+Protein,1,False
+Iso-alpha acids,0,True
+Sugars,0,True
+Ethanol,7,False
+Carbon dioxide,0,True
+Unfermentables,0,True
+Caloric value,3,False
+1-propanol,1,False
+Diacetyl,1,False
+3-methylbutanal,0,True
+Propylene glycol,0,True
+N-propyl acetate,0,True
+N-pentanol,2,False
+2-methyl-1-butanol,2,False
+Isopentyl formate,1,False
+Ethyl isobutyrate,0,True
+3-methyl-2-butenal,0,True
+2-methyltetrahydrofuran-3-one,0,True
+Ethyl butyrate,0,True
+Butyl acetate,0,True
+Methylpyrazine,0,True
+Furfural,0,True
+Ethyl lactate,0,True
+Cis-3-hexenol,0,True
+N-hexanol,2,False
+Styrene,0,True
+Furfuryl alcohol,0,True
+3-methyl-2-hexanol,5,False
+3-furanmethanol,3,False
+2-acetylfuran,3,False
+"2,6-dimethylpyrazine",0,True
+Amyl acetate,0,True
+Ethyl tiglate,0,True
+Benzaldehyde,0,True
+5-methylfurfural,0,True
+N-heptanol,1,False
+1-octen-3-ol,1,False
+Methionol,0,True
+Isomaltol,0,True
+Methyl heptenone,0,True
+2-pentyl furan,0,True
+Ethyl 3-hexanoate,0,True
+α-phellandrene,0,True
+Dehydroxy-cis-linalool oxide,0,True
+Hexyl acetate,0,True
+Isopentyl butanoate,0,True
+2-ethyl-1-hexanol,1,False
+Beta-phellandrene,1,False
+Limonene,0,True
+Eucalyptol,0,True
+Benzyl alcohol,0,True
+Ethyl 2-hexenoate,1,False
+Phenylacetaldehyde,0,True
+E-β-ocimene,0,True
+Prenyl isobutyrate,2,False
+Ethyl furoate,1,False
+O-cresol,3,False
+Ethyl 5-methylhexanoate,0,True
+2-acetylpyrrole,1,False
+Isoamyl lactate,1,False
+N-octanol,1,False
+Cis-linalool oxide,0,True
+Meta-cymenene,0,True
+Terpinolene,0,True
+Linalool,2,False
+2-nonanol,0,True
+N-nonanal,0,True
+2-methyl-benzofuran,0,True
+Heptyl acetate,0,True
+4-methyl-1-pentanol,3,False
+Neo-allo-ocimene,0,True
+X-methyl-1-octanol,1,False
+Trans-dihydro-β-terpineol,0,True
+Cis-β-terpineol,0,True
+Y-methyl-1-octanol,0,True
+Camphor,0,True
+Isobutyl hexanoate,2,False
+Nerol oxide,5,False
+E-2-nonenal,0,True
+Cis-dihydro-β-terpineol,0,True
+4-ethyl-phenol,2,False
+Isoborneol,2,False
+Ethyl benzoate,1,False
+N-nonanol,1,False
+Terpinen-4-ol,3,False
+Diethyl succinate,0,True
+Vinyl caprylate,0,True
+Alpha-terpineol,2,False
+Ethyl linalool,2,False
+Ethyl nicotinate,0,True
+Citronellol,1,False
+Nerol,0,True
+5-hydroxymethylfurfural,0,True
+Ocimenone,0,True
+Cumin aldehyde,0,True
+Ethyl phenylacetate,5,False
+Isopentyl hexanoate,12,False
+Geraniol,0,True
+β-cyclohomocitral,0,True
+Cinnamaldehyde,0,True
+N-decanol,0,True
+Neryl formate,2,False
+4-ethyl-guaiacol,2,False
+2-undecanone,0,True
+Trans-dihydro-α-terpinyl acetate,11,False
+Terpinen-4-ol acetate,0,True
+2-undecanol,3,False
+Terpiryl acetate,0,True
+"E,E-2,4-decadienal",0,True
+Methyl geranate,4,False
+Car-3-en-2-one,1,False
+Dimethoxy-E-citral,1,False
+2-butyl octanoate,8,False
+4-methoxysalicylaldehyde,0,True
+Ethyl hydrocinnamate,0,True
+Eugenol,0,True
+Gamma-nonalactone,1,False
+Methyl para-anisate,0,True
+E-β-damascenone,1,False
+Ethyl 9-decenoate,2,False
+Vanillin,0,True
+Geosmin,0,True
+Dodecanal,0,True
+"4,8-α-epoxy-caryophyllane",0,True
+Caryophyllene,0,True
+E-α-ionone,0,True
+Perillyl acetate,2,False
+β-humulene,0,True
+2-phenyl ethyl butyrate,10,False
+Z-β-farnesene,10,False
+Pentyl octanoate,11,False
+E-β-farnesene,0,True
+2-methylbutyl octanoate,12,False
+Alpha-humulene,0,True
+Neryl propanoate,2,False
+9-epi-E-caryophyllene,0,True
+Ethyl cinnamate,0,True
+Linalool isovalerate,0,True
+α-terpinyl isobutanoate,0,True
+N-dodecanol,2,False
+Germacrene D,1,False
+E-β-ionone,1,False
+Valencene,0,True
+Neryl isobutanoate,0,True
+Methyl isoeugenol,1,False
+Z-dihydro-apofarnesal,0,True
+Butylated hydroxytoluene,1,False
+E-dihydro-apofarnesal,0,True
+Z-nerolidol,0,True
+E-ortho-methoxy cinnamaldehyde,0,True
+α-calacorene,7,False
+E-nerolidol,3,False
+Tobacarol,2,False
+Caryophyllene alcohol,1,False
+Neryl isovalerate,0,True
+Spathulenol,0,True
+Caryophyllene oxide,4,False
+Humulene epoxide II,3,False
+Allo-aromadendrene epoxide,5,False
+Epicubenol,6,False
+Isopropyl laurate,0,True
+"Caryophylla-4,8-dien-5-ol",5,False
+Gamma-eudesmol,0,True
+α-muurolol,6,False
+"1,2-dihydro-8-hydroxy-2E-linalool",12,False
+Tau-cadinol,0,True
+Kongol,0,True
+α-eudesmol,0,True
+14-hydroxy-9-epi-(E)-caryophyllene,0,True
+Tau-muurolol,6,False
+N-tetradecanol,1,False
+Eoeniculin,0,True
+Cadalene,0,True
+"2,3-dihydro-farnesol",2,False
+"E,Z-farnesal",0,True
+Caryophyllene acetate,0,True
+14-hydroxy-α-humulene,0,True
+"Z,E-farnesal",0,True
+"Z,Z-farnesol",0,True
+"Z,E-farnesol",3,False
+Ambroxide,0,True
+Benzyl benzoate,0,True
+"2E,6E-methyl farnesoate",0,True
+Ethyl tetradecanoate,12,False
+2-ethylhexyl acrylate,0,True
+Isopropyl tetradecanoate,0,True
+Ethyl pentadecanoate,11,False
+Methyl hexadecanoate,0,True
+"Z,Z-geranyl linalool",4,False
+Ethyl hexadecanoate,11,False
+Manool oxide,1,False
+13-epi manool oxide,0,True
+Isopropyl hexadecanoate,1,False
+Manool,1,False
+Ethyl octadecanoate,3,False
+Ethyl pentanoate,1,False
+2-ethyl-3-methylpyrazine,0,True
+Total ester compounds,7,False
+Total hop aroma compounds,3,False
+Total acids,1,False
+Total sulfur compounds,2,False

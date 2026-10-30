@@ -1,0 +1,45 @@
+{
+  "n_beers": 250,
+  "n_features": 231,
+  "n_eligible_measured_factors": 217,
+  "rounded_beer_id_disagreements": 213,
+  "n_targets": 50,
+  "n_top3_rows": 150,
+  "bootstrap_replicates": 200,
+  "bootstrap_condition": "primary: resample beers and rebuild chemical graph; secondary: fixed 2.csv graph",
+  "network_2_vs_1_spearman_mae": 1.609158553005732e-16,
+  "network_2_vs_1_spearman_max": 6.661338147750939e-16,
+  "six_csv_is_same_source_not_external": {
+    "mapped_rows": 44,
+    "mapped_columns": 50,
+    "mapped_cells": 2200,
+    "mean_absolute_difference": 1.5063071812105482e-16,
+    "max_absolute_difference": 5.551115123125783e-16
+  },
+  "mean_final_bootstrap_jaccard": 0.35822000000000004,
+  "mean_final_top3_selection_frequency": 0.4752666666666668,
+  "top3_with_bh_q_below_0_05": 150,
+  "top3_source_consistent_eligible_groups": 34,
+  "top3_source_needs_explanation_eligible_groups": 56,
+  "named_anchor_selected_count": 9,
+  "named_anchor_count": 12,
+  "gbm_method_jaccard": {
+    "GBM MDI，同一研究": 0.5,
+    "GBM SHAP，同一研究": 0.2
+  },
+  "style_adjusted_same_sign_fraction": 0.9666666666666667,
+  "style_adjusted_abs_at_least_0_20_fraction": 0.44666666666666666,
+  "mean_overlap_with_previous_top3": null,
+  "hyperparameter_mean_jaccard_range": [
+    0.8440000000000001,
+    1.0
+  ],
+  "input_sha256": {
+    "1.csv": "419849227a02e0c792cd405e6865035b7f58af1a92efa362dbb68a7ca2882f69",
+    "2.csv": "415709ac10f2f730d31f249bd6ac108250bdfbfd62e0055f4d8db9b41ec9cc4c",
+    "4.csv": "43a7b38682ed81ce64d97ebc1874c09dffac023ade4877f34e3c83ef7d42dc1c",
+    "6.csv": "a55004fb0390299a5c8089f0c37d3bfc006e7049963c84d7d9652affabe614ae",
+    "8.xlsx": "f2316766792111d98281bd35c8403682be8c8069d166a7a7d5887ffbb227700a"
+  },
+  "seed": 20261025
+}

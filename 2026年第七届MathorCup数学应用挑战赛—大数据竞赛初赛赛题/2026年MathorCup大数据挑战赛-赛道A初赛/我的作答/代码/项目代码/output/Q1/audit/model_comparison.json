@@ -1,0 +1,105 @@
+{
+  "selection_rule": "nested development OOF ensemble weights; MAE and pooled R2 reported; never Beer 1--12",
+  "selected": "weighted_tree_ensemble",
+  "folds": [
+    {
+      "fold": 1,
+      "train": 183,
+      "valid": 55,
+      "styles": 22
+    },
+    {
+      "fold": 2,
+      "train": 186,
+      "valid": 52,
+      "styles": 22
+    },
+    {
+      "fold": 3,
+      "train": 190,
+      "valid": 48,
+      "styles": 22
+    },
+    {
+      "fold": 4,
+      "train": 195,
+      "valid": 43,
+      "styles": 20
+    },
+    {
+      "fold": 5,
+      "train": 198,
+      "valid": 40,
+      "styles": 20
+    }
+  ],
+  "models": {
+    "mean_baseline": {
+      "dev_oof": {
+        "MAE": 0.41463211767634994,
+        "RMSE": 0.5757048828529574,
+        "pooled_centered_R2": -0.006534330632558039
+      },
+      "holdout_posthoc": {
+        "MAE": 0.46517597422201673,
+        "RMSE": 0.6418649867142951,
+        "pooled_centered_R2": -0.08936722077604164
+      }
+    },
+    "extra_trees": {
+      "dev_oof": {
+        "MAE": 0.3393407676390717,
+        "RMSE": 0.4801273119366595,
+        "pooled_centered_R2": 0.2999298034397522
+      },
+      "holdout_posthoc": {
+        "MAE": 0.3774359420117504,
+        "RMSE": 0.5394933697040739,
+        "pooled_centered_R2": 0.23041046285329536
+      }
+    },
+    "random_forest": {
+      "dev_oof": {
+        "MAE": 0.3407962205642824,
+        "RMSE": 0.48008888793636156,
+        "pooled_centered_R2": 0.30004185047563436
+      },
+      "holdout_posthoc": {
+        "MAE": 0.38360405875421755,
+        "RMSE": 0.5450881628429401,
+        "pooled_centered_R2": 0.214365704881463
+      }
+    },
+    "gradient_boosting": {
+      "dev_oof": {
+        "MAE": 0.34203487070630545,
+        "RMSE": 0.480793160619348,
+        "pooled_centered_R2": 0.2979867186263687
+      },
+      "holdout_posthoc": {
+        "MAE": 0.3726221354433778,
+        "RMSE": 0.5231818503313858,
+        "pooled_centered_R2": 0.27624384450278217
+      }
+    },
+    "weighted_tree_ensemble": {
+      "dev_oof": {
+        "MAE": 0.333467908501084,
+        "RMSE": 0.47018803784691265,
+        "pooled_centered_R2": 0.32861456060349103
+      },
+      "weights": {
+        "extra_trees": 0.38,
+        "random_forest": 0.17,
+        "gradient_boosting": 0.45
+      },
+      "selection_note": "Nested OOF mean weights; Beer 1--12 never used.",
+      "holdout_posthoc": {
+        "MAE": 0.37082957083529,
+        "RMSE": 0.5233285058626863,
+        "pooled_centered_R2": 0.275857091297219
+      },
+      "holdout_posthoc_source": "q1_holdout_summary.json / 论文统一口径"
+    }
+  }
+}
