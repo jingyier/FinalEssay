@@ -1,0 +1,197 @@
+{
+  "input_beers": 250,
+  "base_features": 226,
+  "derived_features": 5,
+  "sensory_proxy_dimensions": 50,
+  "styles": 22,
+  "sensory_predictor": "Q1 frozen weighted tree ensemble (ET/RF/GB weights 0.38/0.17/0.45) on Beer 13--250 with training-only 1/99% grade anchors",
+  "sensory_predictor_train_beers": 238,
+  "generated_per_style": 50,
+  "pca_components": 65,
+  "pca_variance_retained": 0.9014663596095491,
+  "pca_components_holdout_train": 60,
+  "pca_variance_retained_holdout_train": 0.9017672226387388,
+  "source_style": "Pils/Lager",
+  "target_style": "Tripel",
+  "migration_beers": 11,
+  "random_seed": 20261025,
+  "oav_groups": {
+    "esters_sum": [
+      "ethyl_isovalerate",
+      "ethyl_acetate",
+      "ethyl_decanoate",
+      "ethyl_hexanoate",
+      "ethyl_octanoate",
+      "ethyl_propionate",
+      "isopentyl_acetate",
+      "phenethyl_acetate"
+    ],
+    "aroma_hops_sum": [
+      "alpha.humulene",
+      "X1.alpha.terpineol",
+      "E.caryophyllene",
+      "citronellol",
+      "geraniol",
+      "linalool"
+    ],
+    "acids_sum": [
+      "acetic_acid.g.L.",
+      "lactic_acid.mg.L."
+    ],
+    "sulfur_sum": [
+      "CS2",
+      "DES",
+      "DMS",
+      "H2S",
+      "SO2.mg.L."
+    ]
+  },
+  "kcal_coefficients_intercept_then_inputs": [
+    0.3354604350078663,
+    5.498654008363505,
+    0.3951796379344752,
+    0.3945359269891142,
+    0.41812252142471285
+  ],
+  "kcal_inputs": [
+    "ethanol..v.v.",
+    "GFS",
+    "unfermentables",
+    "protein.g.L."
+  ],
+  "thresholds": {
+    "ethyl_isovalerate": 0.1,
+    "ethyl_acetate": 23.0,
+    "ethyl_decanoate": 1.035,
+    "ethyl_hexanoate": 0.225,
+    "ethyl_octanoate": 0.75,
+    "ethyl_propionate": 10.0,
+    "isopentyl_acetate": 0.6,
+    "phenethyl_acetate": 1.29,
+    "alpha.humulene": 0.625,
+    "X1.alpha.terpineol": 1.5,
+    "E.caryophyllene": 0.23,
+    "citronellol": 0.0245,
+    "geraniol": 0.023,
+    "linalool": 0.0045,
+    "acetic_acid.g.L.": 0.145,
+    "lactic_acid.mg.L.": 400.0,
+    "CS2": 50.0,
+    "DES": 1.2,
+    "DMS": 19.0,
+    "H2S": 3.5,
+    "SO2.mg.L.": 11.0
+  },
+  "encoding": {
+    "ethyl_propionate": {
+      "kind": "log10",
+      "zero_encoded": -2.44279366
+    },
+    "CS2": {
+      "kind": "log10",
+      "zero_encoded": -2.146291652
+    },
+    "DES": {
+      "kind": "log10",
+      "zero_encoded": -1.905266906
+    },
+    "protein.g.L.": {
+      "kind": "log10",
+      "zero_encoded": null
+    },
+    "E.caryophyllene": {
+      "kind": "raw",
+      "zero_encoded": null
+    },
+    "isopentyl_acetate": {
+      "kind": "log10",
+      "zero_encoded": -1.189498652
+    },
+    "linalool": {
+      "kind": "raw",
+      "zero_encoded": null
+    },
+    "ethyl_isovalerate": {
+      "kind": "log10",
+      "zero_encoded": -4.487004489
+    },
+    "H2S": {
+      "kind": "log10",
+      "zero_encoded": -1.586071886
+    },
+    "alpha.humulene": {
+      "kind": "raw",
+      "zero_encoded": null
+    },
+    "ethyl_hexanoate": {
+      "kind": "log10",
+      "zero_encoded": -2.476904162
+    },
+    "ethyl_decanoate": {
+      "kind": "log10",
+      "zero_encoded": -2.975719624
+    },
+    "ethanol..v.v.": {
+      "kind": "log10",
+      "zero_encoded": -1.455931956
+    },
+    "ethyl_octanoate": {
+      "kind": "log10",
+      "zero_encoded": null
+    },
+    "lactic_acid.mg.L.": {
+      "kind": "log10",
+      "zero_encoded": null
+    },
+    "ethyl_acetate": {
+      "kind": "log10",
+      "zero_encoded": null
+    },
+    "DMS": {
+      "kind": "log10",
+      "zero_encoded": 0.0462112
+    },
+    "acetic_acid.g.L.": {
+      "kind": "log10",
+      "zero_encoded": -1.756961951
+    },
+    "SO2.mg.L.": {
+      "kind": "log10",
+      "zero_encoded": -1.0
+    },
+    "phenethyl_acetate": {
+      "kind": "log10",
+      "zero_encoded": -2.221667831
+    },
+    "GFS": {
+      "kind": "log10",
+      "zero_encoded": -2.602059991
+    },
+    "citronellol": {
+      "kind": "raw",
+      "zero_encoded": null
+    },
+    "unfermentables": {
+      "kind": "log10",
+      "zero_encoded": null
+    },
+    "geraniol": {
+      "kind": "raw",
+      "zero_encoded": null
+    },
+    "X1.alpha.terpineol": {
+      "kind": "raw",
+      "zero_encoded": null
+    }
+  },
+  "limitations": [
+    "No ground-truth new-beer chemical spectra are supplied; generated spectra have only internal and held-out diagnostics.",
+    "Tripel has one correct real sample among six in the centroid holdout; high generated centroid hit is not evidence of real-world style authenticity.",
+    "Two Pils/Lager diacetyl source cells are missing; no-worsening is verified only for nine observed source values and relative to imputed baselines for two others.",
+    "trans-2-nonenal has no numeric sensory threshold in 8.xlsx; its 95th percentile is a screening proxy.",
+    "All sensory 0-6 values are model-derived proxies from standardized 4.csv, not independent panel ground truth.",
+    "Stale-hops transport constrains the continuous Q1 prediction pointwise before rounding to 0--6 proxy levels.",
+    "Source beer 124 remains unchanged because the fixed 400-candidate fallback found no move satisfying the continuous stale-hops and chemistry constraints.",
+    "The eight-marker classifier is trained and leave-one-out checked on only 39 original beers; its probabilities are not externally calibrated."
+  ]
+}

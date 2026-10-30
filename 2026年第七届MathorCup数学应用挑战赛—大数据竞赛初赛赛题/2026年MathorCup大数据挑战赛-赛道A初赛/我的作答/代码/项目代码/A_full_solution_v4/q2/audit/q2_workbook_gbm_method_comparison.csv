@@ -1,0 +1,3 @@
+﻿dimension,method,workbook_top3,our_top3,shared_count,jaccard
+overall,GBM MDI，同一研究,ethyl_acetate; ethanol..v.v.; ethyl_octanoate,ethyl_acetate; ethyl_octanoate; isopentyl_acetate,2,0.5
+overall,GBM SHAP，同一研究,ethyl_acetate; ethanol..v.v.; protein.g.L.,ethyl_acetate; ethyl_octanoate; isopentyl_acetate,1,0.2

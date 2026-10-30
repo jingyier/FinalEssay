@@ -1,0 +1,14 @@
+{
+  "holdout_beers": 12,
+  "dimensions_with_continuous_labels": 50,
+  "scorecard_positions": 52,
+  "continuous_mae": 0.37082957083529,
+  "pooled_within_dimension_r2": 0.275857091297219,
+  "median_dimension_r2": 0.11003075585364452,
+  "median_dimension_spearman": 0.4549377006375016,
+  "n_positive_dimension_r2": 31,
+  "proxy_grade_exact_rate": 0.37833333333333335,
+  "proxy_grade_within1_rate": 0.83,
+  "proxy_grade_warning": "Based on standardized 4.csv and 238-train-only anchors, not observed raw 0--6 panel grades.",
+  "audit_status": "Beer 1--12 labels were viewed before this model revision; post-hoc out-of-fit evaluation, not pristine external testing."
+}

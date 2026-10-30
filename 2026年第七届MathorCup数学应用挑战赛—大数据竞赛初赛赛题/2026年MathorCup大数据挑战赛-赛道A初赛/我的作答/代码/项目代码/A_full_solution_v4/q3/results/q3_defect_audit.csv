@@ -1,0 +1,6 @@
+﻿defect,n,n_observed_source,n_imputed_source,threshold,threshold_source,pointwise_nonincrease_fraction,source_over_rate,migrated_over_rate,max_increase,max_continuous_increase
+DMS,11,11,0,19.0,"8.xlsx Sensory thresholds, threshold_median",1.0,0.2727272727272727,0.2727272727272727,0.0,
+X2.3.butanedione,11,9,2,0.09,"8.xlsx Sensory thresholds, threshold_median",1.0,0.3333333333333333,0.3333333333333333,0.0,
+X4VG,11,11,0,0.2,"8.xlsx Sensory thresholds, threshold_median",1.0,0.0,0.0,0.0,
+X.E..2.nonenal,11,11,0,0.15836596224999996,"1.csv empirical 95th percentile (screening proxy, not sensory threshold)",1.0,0.0,0.0,0.0,
+stale_hops proxy score,11,11,0,5.0,proxy 0–6 level; continuous prediction is constrained pointwise,1.0,0.0,0.0,0.0,0.0

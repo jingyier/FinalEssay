@@ -1,0 +1,26 @@
+# 2026 MathorCup 赛道 A：问题二重算与审计
+
+此目录只包含问题二的可复现重算。原始附件不复制到项目中。
+
+## 运行
+
+```powershell
+& 'C:/Users/llxxz/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' src/solve_q2.py
+& 'C:/Users/llxxz/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' src/verify_q2.py
+```
+
+需要 `numpy`、`pandas`、`openpyxl`。可用 `--input-dir` 指定原始附件目录，`--bootstrap` 指定重采样次数。审计脚本按正式 200 次结果检查。
+
+主要答案是 `results/q2_top3_per_dimension.csv`，每个感官维度三行，共 150 行；`results/q2_stability_summary.csv` 给出逐维稳定性。`audit/q2_run_manifest.json` 包含数据哈希与汇总指标。
+
+### 方法口径
+
+1. 以 `beer` 编号对齐 `1.csv` 和 `4.csv` 的 250 个样本。`4.csv` 的 `beer_id` 多数经过浮点舍入，不能拿来做精确连接键。
+2. `2.csv` 与从 `1.csv` 重算的 Spearman 矩阵几乎逐格完全相同；以其建立带符号的化合物相关图。题面 PDF 称皮尔逊，但原始数据实际为 Spearman，论文应如实报告。
+3. 将 13 个非单体指标和 1 个内标排除，保留 217 个候选化合物。对相关矩阵定义有符号图权 `A=sign(r)|r|^10`，去掉自环，再按每行绝对权重之和标准化为 `P`。逐维计算样本级 Spearman `D`，网络证据为 `N=0.65D+0.25PD+0.10P²D`。`|D|` 与 `|N|` 各自用合格候选池内的最大值归一化，按 `0.70/0.30` 合成证据；贪心选三次，每次扣除 `0.15×与已选化合物的最大绝对相关`。正负相关方向另外保留。
+4. 主稳定性：200 次按啤酒重采样，每次**重建化合物图并执行同一完整选取规则**。副指标：固定原始 `2.csv` 图，只重算样本相关和最终选取。
+5. `6.csv` 的 44×50 交叉相关与上述同一批样本重算高度一致，因此用于字段和数值核验，**不能称外部验证**。`8.xlsx` 的 GBM 结果亦属同一研究的不同算法对照。
+
+`audit/q2_named_chemical_anchor_audit.csv` 对 DMS、二乙酰、反式-2-壬烯醛等具明确化学名称的维度做独立的机制对照。Top-3 是数据关联候选，不等于因果化合物；机制对照未通过的维度应在论文中单独写明。
+
+`audit/q2_plausibility_review.csv` 并列展示统计 Top-3 与预设化学锚点或来源一致候选；不据此替换主答案。`audit/q2_hyperparameter_sensitivity.csv` 给出图指数与证据权重的九组敏感性检查。
