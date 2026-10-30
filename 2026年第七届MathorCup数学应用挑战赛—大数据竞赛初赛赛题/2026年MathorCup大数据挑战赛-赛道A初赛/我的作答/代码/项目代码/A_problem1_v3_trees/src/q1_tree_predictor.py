@@ -1,4 +1,4 @@
-"""Frozen Q1 ensemble predictor for chemical -> trained-panel descriptors."""
+"""冻结的问题一树模型集成预测器，将化学指标映射为训练组感官描述符。"""
 
 from __future__ import annotations
 

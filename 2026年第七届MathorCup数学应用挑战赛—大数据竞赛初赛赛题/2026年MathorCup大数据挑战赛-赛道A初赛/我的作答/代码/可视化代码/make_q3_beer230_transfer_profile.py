@@ -1,4 +1,4 @@
-"""Create a representative Beer 230 source/transfer/target profile chart."""
+"""绘制代表性 Beer 230 的源样本、迁移样本和目标样本感官剖面。"""
 
 from __future__ import annotations
 
@@ -79,4 +79,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

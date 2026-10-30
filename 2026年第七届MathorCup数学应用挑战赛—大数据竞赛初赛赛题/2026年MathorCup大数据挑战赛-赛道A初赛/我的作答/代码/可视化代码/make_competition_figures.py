@@ -1,3 +1,5 @@
+"""生成跨问题汇总图表，展示数据、模型和结果之间的衔接。"""
+
 from pathlib import Path
 import os, textwrap
 import pandas as pd
@@ -18,7 +20,7 @@ def wrap(s, width):
     return '\n'.join(textwrap.wrap(s, width=width, break_long_words=False, break_on_hyphens=False))
 
 def color_for(v):
-    # blue -> teal -> yellow, v in [0,1]
+    # 颜色从蓝色过渡到青色再到黄色，输入 v 的范围为 [0, 1]。
     v=max(0,min(1,float(v)))
     stops=[(31,78,121),(31,145,140),(242,193,55)]
     if v<0.5:
@@ -63,7 +65,7 @@ def make_frequency():
             name=str(cell.feature)
             label=f'{name}  {val:.2f}'
             d.text((x0+col_w/2,y0+row_h/2),label,font=font(22,latin=True),fill='white' if luminance(c)<150 else 'black',anchor='mm')
-    # Legend and note
+    # 图例及说明文字。
     ly=top+header_h+50*row_h+35
     d.text((left,ly),'频率',font=font(24,True),fill=ink)
     for k in range(11):
@@ -104,7 +106,7 @@ def make_flow():
         for j,text in enumerate(st):
             y0=640+j*190; box(d,(x+50,y0,x+710,y0+115),text,pale,ink,28,False)
             if j<3: arrow(d,(x+380,y0+115,x+380,y0+175))
-    # cross-question interfaces
+    # 三个问题之间的数据接口。
     box(d,(620,1430,2580,1518),'跨题接口：问题一代理感官预测 → 问题三画像与陈酒花约束；8.xlsx 阈值与注释 → 问题二审查 / 问题三缺陷约束',(236,241,246),ink,26,False)
     d.text((W//2,1660),'主线只保留计算顺序，审计细节放入支撑材料。',font=font(24),fill=(100,108,116),anchor='mm')
     im.save(FIG/'fig21_three_questions_route_simple.png',dpi=(220,220))
@@ -112,4 +114,3 @@ def make_flow():
 if __name__=='__main__':
     make_flow()
     print('generated',FIG/'fig21_three_questions_route_simple.png')
-

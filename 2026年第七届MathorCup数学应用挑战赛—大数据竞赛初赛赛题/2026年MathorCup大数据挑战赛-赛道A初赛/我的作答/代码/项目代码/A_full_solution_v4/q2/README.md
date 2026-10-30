@@ -1,13 +1,6 @@
 # 2026 MathorCup 赛道 A：问题二重算与审计
 
-此目录只包含问题二的可复现重算。原始附件不复制到项目中。
-
 ## 运行
-
-```powershell
-& 'C:/Users/llxxz/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' src/solve_q2.py
-& 'C:/Users/llxxz/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' src/verify_q2.py
-```
 
 需要 `numpy`、`pandas`、`openpyxl`。可用 `--input-dir` 指定原始附件目录，`--bootstrap` 指定重采样次数。审计脚本按正式 200 次结果检查。
 

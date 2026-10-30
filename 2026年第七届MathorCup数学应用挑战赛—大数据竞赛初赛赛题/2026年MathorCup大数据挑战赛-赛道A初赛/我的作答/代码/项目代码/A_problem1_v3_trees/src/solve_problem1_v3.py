@@ -1,10 +1,4 @@
-"""MathorCup A problem 1: frozen weighted tree ensemble continuous prediction and cards.
-
-The three tree components and their parameters are fixed before looking at Beer
-1--12 reference labels. Frozen ensemble weights and the grade map use only
-Beer 13--250 nested out-of-fold predictions. The 12 labels are read at the
-end for an explicitly post-hoc, out-of-fit audit; they are never fitted.
-"""
+"""问题一 v3 方案：使用冻结权重的树模型集成生成连续预测和评分卡。"""
 
 from __future__ import annotations
 
@@ -128,8 +122,8 @@ def main():
             AUDIT / f"{name}_oof.csv", encoding="utf-8-sig")
         comparison[name] = {"dev_oof": metrics(ydev, oof)}
 
-    # The production model is a fixed ensemble whose weights were obtained by
-    # nested development-fold OOF selection and rounded before freezing.
+    # 生产模型采用固定权重集成；权重由
+    # 嵌套开发折 OOF 选择得到，并在冻结前完成舍入。
     selected = "weighted_tree_ensemble"
     ensemble_oof = sum(ENSEMBLE_WEIGHTS[name] * model_oof[name] for name in ENSEMBLE_WEIGHTS)
     model_oof[selected] = ensemble_oof
@@ -139,9 +133,9 @@ def main():
     predictor = fit_fixed_panel_predictor(chem, sens)
     pred = predictor.predict_continuous(chem.loc[hold]).to_numpy(float)
     oof = model_oof[selected]
-    # Cross-check the ExtraTrees component used by the production ensemble.
-    # The public predictor averages the three frozen components, so it is not
-    # expected to equal the ExtraTrees-only prediction bit-for-bit.
+    # 对生产集成所使用的 ExtraTrees 分量进行交叉核对。
+    # 对外预测器会平均三个冻结分量，因此不应
+    # 与仅使用 ExtraTrees 的预测逐位相同。
     predicted_et = fit_predict("extra_trees", xdev, ydev, xhold)
     component = predictor.predict_components(chem.loc[hold])["extra_trees"]
     assert np.max(np.abs(component - predicted_et)) < 1e-12
@@ -184,8 +178,8 @@ def main():
     pd.DataFrame(pred, index=hold, columns=target_cols).rename(columns=RENAMES).rename_axis("Beer").to_csv(
         OUT / "A_problem1_v3_continuous_predictions.csv", encoding="utf-8-sig")
     comparison[selected]["holdout_posthoc"] = metrics(yhold, pred)
-    # The other candidate's holdout is written solely to make this audit
-    # complete; it does not participate in the selection above.
+    # 另一个候选模型的留出结果仅用于补全本次审计；
+    # 不参与上面的模型选择。
     for name in ("extra_trees", "random_forest", "gradient_boosting"):
         comparison[name]["holdout_posthoc"] = metrics(
             yhold, fit_predict(name, xdev, ydev, xhold))

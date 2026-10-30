@@ -29,7 +29,7 @@
   },
   "style_adjusted_same_sign_fraction": 0.9666666666666667,
   "style_adjusted_abs_at_least_0_20_fraction": 0.44666666666666666,
-  "mean_overlap_with_v3_top3": 0.5466666666666666,
+  "mean_overlap_with_previous_top3": null,
   "hyperparameter_mean_jaccard_range": [
     0.8440000000000001,
     1.0

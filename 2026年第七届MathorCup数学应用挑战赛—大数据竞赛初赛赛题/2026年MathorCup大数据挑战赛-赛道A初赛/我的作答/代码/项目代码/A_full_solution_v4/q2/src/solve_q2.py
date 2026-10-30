@@ -1,13 +1,4 @@
-"""Audited solution to MathorCup 2026 Track A, Question 2.
-
-Run: python solve_q2.py [--input-dir PATH] [--bootstrap 200]
-
-The supplied 2.csv is the observed chemical co-expression network.
-Primary bootstrap frequencies rebuild that network in each resample and rerun
-the exact same direct-association/network/mRMR selector as the final Top-3.
-A secondary frequency conditions on the fixed observed 2.csv network.
-Neither 6.csv nor workbook GBM sheets are independent test data.
-"""
+"""问题二的审计版求解程序。完成化学指标筛选、感官关联分析、网络筛选及稳定性评估。"""
 
 from __future__ import annotations
 
@@ -29,11 +20,11 @@ RESULTS = ROOT / "results"
 AUDIT = ROOT / "audit"
 SEED = 20261025
 
-# Eligible factors are measured variables, mostly individual compounds. Direct
-# physicochemical measurements of chemical species also remain (for example
-# ethanol concentration and CO2 pressure); they are not all aroma-compound
-# concentrations. We remove pooled indices, broad non-molecular descriptors,
-# and internal-standard artefacts.
+# 候选因素必须是实测变量，主要对应单个化合物。直接
+# 保留化学物质的直接理化测量值（例如
+# 乙醇浓度和 CO2 压力）；这些变量并不都表示香气化合物
+# 浓度。因此删除汇总指数、宽泛的非分子描述量
+# 以及内标产生的伪变量。
 NON_COMPOUND = {
     "color.EBC.", "betaglucan.mg.L.", "pH", "protein.g.L.",
     "bitterness", "GFS", "unfermentables", "kcalperc", "iron",
@@ -46,7 +37,7 @@ def norm(value: object) -> str:
 
 
 def spearman_xy(x: np.ndarray, y: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """Strict pairwise-complete Spearman, re-ranking both sides per valid pair.
+    """严格的成对完整 Spearman 相关：对每个有效样本对分别重新排序。
 
     The fast matrix path applies only when a chemical column has no missing
     value. For every partly missing chemical column, both X and each Y target
@@ -101,7 +92,7 @@ def scaled_abs(values: np.ndarray, eligible: np.ndarray) -> np.ndarray:
 
 def selector(direct: np.ndarray, transition: np.ndarray, redundancy: np.ndarray,
              eligible: np.ndarray, direct_weight: float = 0.70) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """The sole final selector, reused without changes in every bootstrap."""
+    """唯一的最终筛选器；每次 bootstrap 均不作改动地复用。"""
     network = network_score(direct, transition)
     evidence = (direct_weight * scaled_abs(direct, eligible)
                 + (1.0 - direct_weight) * scaled_abs(network, eligible))
@@ -125,7 +116,7 @@ def selector(direct: np.ndarray, transition: np.ndarray, redundancy: np.ndarray,
 
 def simple_top3(matrix: np.ndarray, eligible: np.ndarray,
                 redundancy: np.ndarray) -> np.ndarray:
-    """Method comparison only; the final selector is `selector`."""
+    """仅用于方法比较；最终筛选器为 `selector`。"""
     signal = scaled_abs(matrix, eligible)
     signal[~eligible, :] = -np.inf
     out = np.empty((matrix.shape[1], 3), dtype=int)
@@ -159,7 +150,7 @@ def bh_fdr(p: np.ndarray) -> np.ndarray:
 
 
 def source_flag(target: str, source: object) -> str:
-    """Coarse provenance check, never used for rank selection."""
+    """粗粒度来源核验，不用于排名筛选。"""
     prefix = target.split("_")[1] if target.startswith(("A_", "F_")) else ""
     expected = {"malt": {"Malt"}, "hops": {"Hops"}, "esters": {"Yeast"}}.get(prefix)
     if expected is None:
@@ -214,7 +205,7 @@ def same_source_check(input_dir: Path, direct: np.ndarray, features: list[str],
 def anchor_audit(direct: np.ndarray, selected: np.ndarray, counts: np.ndarray,
                  features: list[str], targets: list[str], eligible: np.ndarray,
                  n_boot: int) -> pd.DataFrame:
-    """Named chemical/sensory pairs test plausibility; never force selection."""
+    """利用预先指定的化学—感官配对检验合理性，不强制纳入筛选结果。"""
     anchors = {
         "dms": "DMS", "diacetyl": "X2.3.butanedione", "t2n": "X.E..2.nonenal",
         "X4vg": "X4VG", "lactic": "lactic_acid.mg.L.",
@@ -237,7 +228,7 @@ def anchor_audit(direct: np.ndarray, selected: np.ndarray, counts: np.ndarray,
 
 def workbook_gbm_comparison(input_dir: Path, target: str,
                             final: np.ndarray, features: list[str]) -> pd.DataFrame:
-    """Same-study algorithmic comparison for overall, not external validation."""
+    """在同一研究数据内比较整体指标，仅作算法比较，不构成外部验证。"""
     mdi = pd.read_excel(input_dir / "8.xlsx", sheet_name="GBM importance MDI")
     mdi = mdi.rename(columns={mdi.columns[0]: "importance", mdi.columns[1]: "feature"})
     mdi["importance"] = pd.to_numeric(mdi.importance, errors="coerce")
@@ -258,7 +249,7 @@ def workbook_gbm_comparison(input_dir: Path, target: str,
 
 def style_adjusted_check(x: np.ndarray, y: np.ndarray, chem: pd.DataFrame,
                          top3: pd.DataFrame, features: list[str], targets: list[str]) -> pd.DataFrame:
-    """Sensitivity check for between-style confounding, not a causal estimate."""
+    """检验风格差异导致的混杂敏感性，不作为因果估计。"""
     style = chem.tasting_category_fine.astype(str)
     xr = pd.DataFrame(x, columns=features).rank(axis=0, method="average")
     yr = pd.DataFrame(y, columns=targets).rank(axis=0, method="average")
@@ -277,7 +268,7 @@ def style_adjusted_check(x: np.ndarray, y: np.ndarray, chem: pd.DataFrame,
 
 def plausibility_review(direct: np.ndarray, top3: pd.DataFrame, meta: pd.DataFrame,
                         features: list[str], targets: list[str], eligible: np.ndarray) -> pd.DataFrame:
-    """Predeclared named anchors plus source-only category checks.
+    """预先指定的命名锚点，加上仅基于源样本的类别核验。
 
     A source-matched Hops/Malt/Yeast compound is merely a contextual check;
     the source label does not establish a matching sensory mechanism.
@@ -350,8 +341,8 @@ def main() -> None:
     chem = pd.read_csv(args.input_dir / "1.csv")
     sens = pd.read_csv(args.input_dir / "4.csv")
     assert chem.beer.astype(int).equals(sens.beer.astype(int)), "beer row order mismatch"
-    # 4.csv stores most beer_id values rounded in scientific notation. The
-    # unique `beer` index, which matches row by row, is the reliable join key.
+    # 4.csv 中多数 beer_id 以科学计数法保存并发生了舍入。
+    # 与行顺序一一对应的唯一 beer 索引是可靠的连接键。
     assert chem.beer.is_unique and sens.beer.is_unique
     rounded_beer_id_disagreements = int((chem.beer_id.astype(str) !=
         sens.beer_id.astype("int64").astype(str)).sum())
@@ -407,10 +398,10 @@ def main() -> None:
     sensitivity = pd.DataFrame(sensitivity_rows)
     sensitivity.to_csv(AUDIT / "q2_hyperparameter_sensitivity.csv", index=False, encoding="utf-8-sig")
 
-    # Each bootstrap reruns the same direct/network/mRMR selector. The primary
-    # estimate also rebuilds the graph from the sampled beers, so it captures
-    # uncertainty in both direct sensory associations and chemical edges.
-    # A secondary estimate conditions on the supplied observed 2.csv graph.
+    # 每次 bootstrap 都重新执行相同的直接关联、网络和 mRMR 筛选。主估计量
+    # 同时根据抽样后的啤酒样本重建网络，因此能够反映
+    # 直接感官关联和化学边两部分的不确定性。
+    # 次级估计量以给定的 2.csv 观测网络为条件。
     rng = np.random.default_rng(SEED)
     counts = np.zeros((len(targets), len(features)), dtype=np.int32)
     counts_fixed = np.zeros_like(counts)
@@ -436,8 +427,8 @@ def main() -> None:
                         selected_fixed=boot_sets_fixed,
                         feature_names=np.array(features), dimension_names=np.array(targets))
 
-    # Large-sample normal approximation to Spearman's null distribution.
-    # It is used only to flag exploratory associations, not to define Top-3.
+    # 使用大样本正态近似描述 Spearman 相关系数的零分布。
+    # 该结果仅用于标记探索性关联，不参与 Top-3 的定义。
     zstat = np.abs(direct) * np.sqrt(np.maximum(pair_n - 1, 1))
     pvals = np.vectorize(math.erfc)(zstat / math.sqrt(2.0))
     qvals = bh_fdr(np.where(np.isfinite(pvals), pvals, 1.0)[eligible])
@@ -524,6 +515,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
-

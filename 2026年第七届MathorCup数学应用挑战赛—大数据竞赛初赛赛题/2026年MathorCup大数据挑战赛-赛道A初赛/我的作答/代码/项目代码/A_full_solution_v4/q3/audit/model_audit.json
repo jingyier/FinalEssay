@@ -8,9 +8,9 @@
   "sensory_predictor_train_beers": 238,
   "generated_per_style": 50,
   "pca_components": 65,
-  "pca_variance_retained": 0.9014663596095491,
+  "pca_variance_retained": 0.9014663596095488,
   "pca_components_holdout_train": 60,
-  "pca_variance_retained_holdout_train": 0.9017672226387388,
+  "pca_variance_retained_holdout_train": 0.9017672226387387,
   "source_style": "Pils/Lager",
   "target_style": "Tripel",
   "migration_beers": 11,
@@ -47,11 +47,11 @@
     ]
   },
   "kcal_coefficients_intercept_then_inputs": [
-    0.3354604350078663,
-    5.498654008363505,
-    0.3951796379344752,
-    0.3945359269891142,
-    0.41812252142471285
+    0.33546043500781,
+    5.4986540083635065,
+    0.3951796379344758,
+    0.39453592698911205,
+    0.41812252142471873
   ],
   "kcal_inputs": [
     "ethanol..v.v.",
@@ -83,96 +83,28 @@
     "SO2.mg.L.": 11.0
   },
   "encoding": {
-    "ethyl_propionate": {
+    "ethanol..v.v.": {
       "kind": "log10",
-      "zero_encoded": -2.44279366
+      "zero_encoded": -1.455931956
     },
-    "CS2": {
-      "kind": "log10",
-      "zero_encoded": -2.146291652
-    },
-    "DES": {
-      "kind": "log10",
-      "zero_encoded": -1.905266906
-    },
-    "protein.g.L.": {
+    "unfermentables": {
       "kind": "log10",
       "zero_encoded": null
-    },
-    "E.caryophyllene": {
-      "kind": "raw",
-      "zero_encoded": null
-    },
-    "isopentyl_acetate": {
-      "kind": "log10",
-      "zero_encoded": -1.189498652
-    },
-    "linalool": {
-      "kind": "raw",
-      "zero_encoded": null
-    },
-    "ethyl_isovalerate": {
-      "kind": "log10",
-      "zero_encoded": -4.487004489
     },
     "H2S": {
       "kind": "log10",
       "zero_encoded": -1.586071886
     },
-    "alpha.humulene": {
-      "kind": "raw",
-      "zero_encoded": null
-    },
     "ethyl_hexanoate": {
       "kind": "log10",
       "zero_encoded": -2.476904162
     },
-    "ethyl_decanoate": {
-      "kind": "log10",
-      "zero_encoded": -2.975719624
-    },
-    "ethanol..v.v.": {
-      "kind": "log10",
-      "zero_encoded": -1.455931956
-    },
-    "ethyl_octanoate": {
-      "kind": "log10",
-      "zero_encoded": null
-    },
-    "lactic_acid.mg.L.": {
-      "kind": "log10",
-      "zero_encoded": null
-    },
-    "ethyl_acetate": {
-      "kind": "log10",
-      "zero_encoded": null
-    },
-    "DMS": {
-      "kind": "log10",
-      "zero_encoded": 0.0462112
-    },
-    "acetic_acid.g.L.": {
-      "kind": "log10",
-      "zero_encoded": -1.756961951
-    },
-    "SO2.mg.L.": {
-      "kind": "log10",
-      "zero_encoded": -1.0
-    },
-    "phenethyl_acetate": {
-      "kind": "log10",
-      "zero_encoded": -2.221667831
-    },
-    "GFS": {
-      "kind": "log10",
-      "zero_encoded": -2.602059991
-    },
-    "citronellol": {
+    "E.caryophyllene": {
       "kind": "raw",
       "zero_encoded": null
     },
-    "unfermentables": {
-      "kind": "log10",
+    "linalool": {
+      "kind": "raw",
       "zero_encoded": null
     },
     "geraniol": {
@@ -180,6 +112,74 @@
       "zero_encoded": null
     },
     "X1.alpha.terpineol": {
+      "kind": "raw",
+      "zero_encoded": null
+    },
+    "CS2": {
+      "kind": "log10",
+      "zero_encoded": -2.146291652
+    },
+    "phenethyl_acetate": {
+      "kind": "log10",
+      "zero_encoded": -2.221667831
+    },
+    "ethyl_propionate": {
+      "kind": "log10",
+      "zero_encoded": -2.44279366
+    },
+    "protein.g.L.": {
+      "kind": "log10",
+      "zero_encoded": null
+    },
+    "SO2.mg.L.": {
+      "kind": "log10",
+      "zero_encoded": -1.0
+    },
+    "ethyl_acetate": {
+      "kind": "log10",
+      "zero_encoded": null
+    },
+    "lactic_acid.mg.L.": {
+      "kind": "log10",
+      "zero_encoded": null
+    },
+    "acetic_acid.g.L.": {
+      "kind": "log10",
+      "zero_encoded": -1.756961951
+    },
+    "GFS": {
+      "kind": "log10",
+      "zero_encoded": -2.602059991
+    },
+    "isopentyl_acetate": {
+      "kind": "log10",
+      "zero_encoded": -1.189498652
+    },
+    "DMS": {
+      "kind": "log10",
+      "zero_encoded": 0.0462112
+    },
+    "ethyl_octanoate": {
+      "kind": "log10",
+      "zero_encoded": null
+    },
+    "alpha.humulene": {
+      "kind": "raw",
+      "zero_encoded": null
+    },
+    "ethyl_decanoate": {
+      "kind": "log10",
+      "zero_encoded": -2.975719624
+    },
+    "ethyl_isovalerate": {
+      "kind": "log10",
+      "zero_encoded": -4.487004489
+    },
+    "DES": {
+      "kind": "log10",
+      "zero_encoded": -1.905266906
+    },
+    "citronellol": {
       "kind": "raw",
       "zero_encoded": null
     }

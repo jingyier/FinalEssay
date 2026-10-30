@@ -1,4 +1,4 @@
-"""Fill the original 12-page Excel template from frozen Q1 score CSV."""
+"""将问题一连续预测整理为评分卡工作簿，并写入必要的格式和校验信息。"""
 
 from __future__ import annotations
 

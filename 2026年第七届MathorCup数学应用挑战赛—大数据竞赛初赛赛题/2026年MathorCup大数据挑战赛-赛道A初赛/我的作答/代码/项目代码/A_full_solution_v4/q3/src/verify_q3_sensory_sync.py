@@ -1,9 +1,6 @@
-"""Independently verify Q3's 50 proxy dimensions use the frozen Q1 scorer.
+"""核对问题三使用的感官字段与问题一评分卡字段之间的对应关系。"""
 
-Requires numpy, pandas, and scikit-learn.  It reads the original contest CSVs
-and the saved Q3 outputs, then refits Q1 on only Beer 13--250.  It does not
-read or use Beer 1--12 sensory targets during fitting or calibration.
-"""
+
 
 from __future__ import annotations
 
@@ -49,8 +46,8 @@ def main() -> None:
     if q1_output:
         q1 = scorer.predict_continuous(chem.loc[list(range(1, 13)), features]).to_numpy(float)
         q1_frame = pd.read_csv(q1_output)
-        # The scorecard-facing Q1 CSV uses three display aliases while the
-        # frozen predictor keeps the original 4.csv target names.
+        # 面向评分卡的 Q1 CSV 使用三个显示别名，而
+        # 冻结预测器仍保留 4.csv 中的原始目标字段名。
         aliases = {
             "A_esters_fruity": "A_ester_fruity",
             "F_esters_fruity": "F_ester_fruity",
@@ -69,4 +66,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

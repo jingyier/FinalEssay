@@ -1,4 +1,6 @@
-"""Read-only checks on saved Question 3 outputs and source data."""
+"""核验问题三迁移结果、感官约束和输出文件的一致性。"""
+
+
 
 from __future__ import annotations
 
@@ -106,4 +108,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -1,4 +1,4 @@
-"""Extract only workbook fields required by the frozen Q1 scoring route."""
+
 
 from __future__ import annotations
 

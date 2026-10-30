@@ -1,10 +1,4 @@
-"""Development-only model benchmark for Problem 1.
-
-This script compares several fixed model families using only Beer 13--250 and
-the same style-stratified five folds as the frozen Q1 route.  Beer 1--12 are
-never read.  The benchmark includes the frozen weighted tree ensemble used in production.
-The 12 holdout beers are never read.
-"""
+"""问题一候选模型的开发阶段比较脚本。结果仅用于模型选择和审计。"""
 
 from __future__ import annotations
 

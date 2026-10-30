@@ -1,4 +1,5 @@
-"""Independent structural and bootstrap-frequency audit of Question 2 files."""
+"""核验问题二结果文件的结构、字段和关键数值。"""
+
 
 from pathlib import Path
 

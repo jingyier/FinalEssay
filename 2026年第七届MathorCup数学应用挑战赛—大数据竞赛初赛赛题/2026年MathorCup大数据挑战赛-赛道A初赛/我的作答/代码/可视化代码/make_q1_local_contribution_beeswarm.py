@@ -1,11 +1,4 @@
-"""Create a SHAP-style sample-level contribution plot for Question 1.
-
-The frozen model is explained with a transparent baseline perturbation:
-replace one chemical feature by its development-set median and measure the
-change in the ensemble prediction.  This is deliberately labelled as a
-baseline perturbation contribution, not TreeSHAP, because the runtime does
-not include a TreeSHAP implementation.
-"""
+"""绘制问题一的样本级特征贡献图，用于展示树模型预测的局部变化。"""
 
 from __future__ import annotations
 
@@ -52,8 +45,8 @@ def main() -> None:
     x_train = chem.loc[train_ids, predictor.feature_cols].copy()
     base_pred = predictor.predict_continuous(x_train)
 
-    # Aggregate the three tree components' importances and retain original
-    # chemical fields (indicator columns are omitted from the visual).
+    # 汇总三个树模型分量的重要性，并保留原始
+    # 化学字段；指示变量列不纳入图形展示。
     n_base = len(predictor.feature_cols)
     importance = np.zeros((len(predictor.target_cols), n_base), float)
     for name, model in predictor.models.items():
@@ -127,4 +120,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

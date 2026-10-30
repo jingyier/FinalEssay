@@ -1,3 +1,5 @@
+"""使用 Matplotlib 绘制问题二候选因素的入选频率图。"""
+
 from pathlib import Path
 import os, textwrap
 import numpy as np
@@ -49,4 +51,3 @@ cb.ax.tick_params(labelsize=9)
 fig.savefig(FIG/'fig_q2_top3_frequency_heatmap.png',dpi=300,bbox_inches='tight',facecolor='white')
 plt.close(fig)
 print(FIG/'fig_q2_top3_frequency_heatmap.png')
-

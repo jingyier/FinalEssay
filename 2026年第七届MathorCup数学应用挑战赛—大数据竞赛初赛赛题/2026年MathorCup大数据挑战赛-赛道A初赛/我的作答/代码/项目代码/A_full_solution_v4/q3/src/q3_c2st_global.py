@@ -1,9 +1,6 @@
-"""Cross-validated classifier two-sample test for Q3 generated spectra.
+"""计算问题三迁移前后样本分布的分类器两样本检验指标。"""
 
-This is an internal diagnostic: it compares 250 observed spectra with a
-balanced sample of 250 generated spectra in the frozen rank/PCA space.  It
-does not use new-beer ground truth and is not a claim of external validity.
-"""
+
 
 from __future__ import annotations
 

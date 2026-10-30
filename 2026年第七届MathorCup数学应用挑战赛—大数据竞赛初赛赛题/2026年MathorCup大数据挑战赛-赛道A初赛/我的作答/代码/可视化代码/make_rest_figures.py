@@ -1,8 +1,4 @@
-"""Code-generated, data-backed figures for the full Track A paper.
-
-Every plotted datum is read from supplied attachments or v4 result files.
-All labels are Chinese; plots are sized for an A4 single-column paper.
-"""
+"""生成赛道 A 论文其余图表。图形均基于已有数据和核验结果。"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -40,7 +36,12 @@ def title(d,w,name,sub=""):
     # 标题与第一层流程框之间保留明显留白，避免版式拥挤。
     tx(d,w//2,45,name,52,bold=True,anchor="mm")
     if sub: tx(d,w//2,112,sub,29,MUTED,anchor="mm")
-def save(im,name): im.save(OUT/name,dpi=(360,360))
+ALLOWED_FIGURES = {"fig09_q2_stability.png", "fig10_q2_named_anchor.png", "fig13_q3_holdout.png", "fig14_q3_markers.png", "fig14b_q3_sensitivity.png", "fig14c_q3_sensory_profile.png", "fig16_q3_defects.png"}
+
+def save(im, name):
+    if name in ALLOWED_FIGURES:
+        OUT.mkdir(parents=True, exist_ok=True)
+        im.save(OUT / name, dpi=(360, 360))
 def box(d,xy,header,body="",accent=BLUE):
     x0,y0,x1,y1=xy
     # 流程图采用参考论文的白底黑框、细线与紧凑排版；不使用彩色卡片。
@@ -64,18 +65,18 @@ def arrow(d,x0,y0,x1,y1,color=MUTED,width=5):
 def overview():
     W,H=2400,1560; im,d=canvas(W,H)
     title(d,W,"三问数据与计算路径","附件—模型—输出")
-    # Repeat shared attachments in each lane so arrows do not imply a false input.
+    # 在每条流程线上重复标出共享附件，避免箭头造成错误的输入关系。
     box(d,(80,195,670,470),"问题一输入","1.csv＋4.csv：化学与感官\n3.xlsx：52位置评分卡\n8.xlsx：乙醛校准浓度",BLUE)
     box(d,(905,195,1495,470),"问题二输入","1.csv＋4.csv：直接关联\n2.csv：化学秩相关图\n6.csv、8.xlsx：核验与注释",TEAL)
     box(d,(1730,195,2320,470),"问题三输入","1.csv＋4.csv：化学与感官\n8.xlsx：阈值与校准\n问题一预测器：代理画像",RUST)
-    # Three work lanes
+    # 三条工作线。
     box(d,(80,640,670,875),"问题一：感官推定等级","238开发＋12留出；50项回归\n乙醛2项阈值外推→52项",BLUE)
     box(d,(905,640,1495,875),"问题二：统计关联候选","231节点共表达；217项候选\n50维×Top-3；200次重抽样",TEAL)
     box(d,(1730,640,2320,875),"问题三：风格条件谱","226基础＋5派生；22×50生成\n11款淡色艾尔/拉格→三料啤酒",RUST)
     arrow(d,375,470,375,635,BLUE)
     arrow(d,1200,470,1200,635,TEAL)
     arrow(d,2025,470,2025,635,RUST)
-    # output/validation band
+    # 输出与核验区域。
     for x0,x1,s,c in [(80,670,"12张回填评分卡\n50项留出对照",BLUE),(905,1495,"150条候选清单\n稳定性与化学审查",TEAL),(1730,2320,"1100条生成谱＋11条迁移\n风格/缺陷/派生式核验",RUST)]:
         d.rectangle((x0,1030,x1,1250),fill=PALE,outline=LIGHT,width=2)
         d.line((x0,1030,x1,1030),fill=FLOW_INK,width=3)
@@ -397,4 +398,3 @@ def main():
     q3_pipeline(); q3_holdout(); q3_markers(); q3_sensory_profile(); q3_sensitivity(); q3_migration(); q3_defects()
 
 if __name__=="__main__": main()
-

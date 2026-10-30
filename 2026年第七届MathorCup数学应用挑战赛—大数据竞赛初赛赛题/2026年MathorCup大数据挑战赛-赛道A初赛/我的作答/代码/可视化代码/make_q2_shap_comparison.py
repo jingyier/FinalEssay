@@ -1,4 +1,4 @@
-"""Create a transparent same-source MDI/SHAP comparison for Question 2."""
+"""绘制问题二同一数据源上的 MDI 与 SHAP 特征重要性对照图。"""
 
 from __future__ import annotations
 
@@ -16,8 +16,8 @@ DATA = PACKAGE / "03_原始附件"
 Q2 = PACKAGE / "项目代码" / "A_full_solution_v4" / "q2"
 OUT = ROOT / "可视化代码" / "图表" / "fig_q2_shap_method_comparison.png"
 
-# The local ML runtime supplies scikit-learn/matplotlib but not openpyxl;
-# use the bundled openpyxl only after pandas and NumPy have loaded.
+# 本地机器学习运行环境提供 scikit-learn 和 matplotlib，但未提供 openpyxl；
+# 待 pandas 和 NumPy 加载完成后，再补充使用随环境提供的 openpyxl。
 PRIMARY_SITE = Path(r"C:\Users\llxxz\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\site-packages")
 if PRIMARY_SITE.exists() and str(PRIMARY_SITE) not in sys.path:
     sys.path.insert(0, str(PRIMARY_SITE))
@@ -64,8 +64,8 @@ def main() -> None:
     mdi_j = float(comparison.loc[comparison["method"].str.contains("MDI"), "jaccard"].iloc[0])
     shap_j = float(comparison.loc[comparison["method"].str.contains("SHAP"), "jaccard"].iloc[0])
 
-    # Keep the ten largest SHAP features and append any of our three candidates
-    # that are outside that list, so the overlap is visible rather than hidden.
+    # 保留 SHAP 值最大的十个特征；若三个候选指标不在其中，则一并追加，
+    # 使候选指标与 SHAP 排名的重合关系能够直接呈现。
     features = list(shap_abs.head(10).index)
     for feature in our_top3:
         if feature not in features:
@@ -121,4 +121,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

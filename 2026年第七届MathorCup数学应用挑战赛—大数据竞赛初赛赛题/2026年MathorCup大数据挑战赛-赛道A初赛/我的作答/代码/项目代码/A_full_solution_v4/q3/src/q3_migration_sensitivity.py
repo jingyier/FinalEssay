@@ -1,11 +1,6 @@
-"""Sensitivity audit for the Question 3 constrained migration search.
+"""问题三迁移敏感性分析脚本。比较不同搜索分辨率对迁移结果的影响。"""
 
-The production solution searches alpha on a 0.1 grid and uses a predeclared
-400-candidate fallback for samples blocked on the centroid direction.  This
-audit repeats the same constrained search with 0.05, 0.10 and 0.20 alpha
-grids, keeping the data, model, sensory constraint and fallback rule fixed.
-It reports whether the migration conclusion depends on grid resolution.
-"""
+
 
 from __future__ import annotations
 
@@ -16,9 +11,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-# The lightweight local Python environment has scikit-learn but not
-# openpyxl.  Add only the primary runtime's package directory after NumPy
-# and pandas have loaded, avoiding a mixed NumPy installation.
+# 轻量本地 Python 环境提供 scikit-learn，但未提供
+# openpyxl。待 NumPy
+# 和 pandas 加载完成后，再加入主运行时的包目录，避免混用 NumPy 安装。
 PRIMARY_SITE = Path(r"C:\Users\llxxz\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\site-packages")
 if PRIMARY_SITE.exists() and str(PRIMARY_SITE) not in sys.path:
     sys.path.insert(0, str(PRIMARY_SITE))
@@ -106,8 +101,8 @@ def main() -> None:
                 if distance < best[0] - 1e-10:
                     best = (distance, pos, alpha)
 
-            # Keep the production fallback unchanged so only the primary grid
-            # resolution varies in this audit.
+            # 保持生产流程中的回退逻辑不变，仅改变主网格的
+            # 分辨率，用于本次审计。
             fallback_spectrum = None
             fallback_score = None
             fallback_raw = None
@@ -176,4 +171,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -1,8 +1,4 @@
-"""Rebuild the paper's Problem 1 figures from the frozen v3 tree outputs.
-
-The figures are deliberately drawn from numbers, never from screenshots or
-generated artwork.  Labels and legends are Chinese and sizes target A4 print.
-"""
+"""根据冻结的 v3 树模型结果重建论文中的问题一图表。"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -17,8 +13,8 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 # 论文图统一使用宋体；图中的英文、数字由系统回退到 Times New Roman。
 FONT_CJK = Path("C:/Windows/Fonts/simsun.ttc")
-# SimSun bold is not consistently populated on this Windows image; using the
-# complete regular SimSun face avoids missing-glyph boxes in headings.
+# 当前 Windows 环境中的宋体粗体字形不完整，因此改用完整的常规宋体，避免标题出现缺字框。
+
 FONT_CJK_BOLD = Path("C:/Windows/Fonts/simsun.ttc")
 FONT_LATIN = Path("C:/Windows/Fonts/times.ttf")
 FONT_LATIN_BOLD = Path("C:/Windows/Fonts/timesbd.ttf")
@@ -82,7 +78,7 @@ def make_heatmap(part: str, columns: list[str], number: int):
     for j, col in enumerate(columns):
         x = x0 + j*cw + cw//2
         name = LABELS.get(col, col)
-        # Rotate labels to retain legible Chinese in a fixed print width.
+        # 在固定版面宽度下旋转标签，保证中文仍然可读。
         lab = Image.new("RGBA", (125, 265), (255,255,255,0))
         ld = ImageDraw.Draw(lab)
         ld.text((62, 248), name, font=f(34), fill=INK, anchor="mb")
@@ -151,4 +147,3 @@ def main():
 
 if __name__=="__main__":
     main()
-

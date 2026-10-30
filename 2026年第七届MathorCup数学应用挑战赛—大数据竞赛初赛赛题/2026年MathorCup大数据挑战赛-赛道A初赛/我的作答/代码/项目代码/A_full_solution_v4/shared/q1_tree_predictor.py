@@ -1,4 +1,6 @@
-"""Frozen Q1 ensemble predictor shared by Problem 1 and Problem 3."""
+"""共享的问题一树模型预测器实现。"""
+
+
 
 from __future__ import annotations
 

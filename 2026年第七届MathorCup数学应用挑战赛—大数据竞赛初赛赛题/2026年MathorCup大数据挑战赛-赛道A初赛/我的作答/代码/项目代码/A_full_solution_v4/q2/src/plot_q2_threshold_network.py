@@ -1,11 +1,5 @@
-"""Recompute the 0.65 Spearman skeleton and draw its paper-ready summary.
+"""绘制问题二化学关联网络及阈值筛选结果。"""
 
-Usage:
-    python plot_q2_threshold_network.py --matrix PATH_TO_2.csv
-
-The sparse skeleton is for descriptive visualization. The Q2 Top-3 selector
-uses the unthresholded, signed |rho|**10 graph in solve_q2.py.
-"""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Independent, reproducible audit and solution for MathorCup A, Question 3.
+"""问题三的独立、可复现审计与求解程序。
 
 The four OAV aggregates are reconstructed from calibrated concentrations and
 the thresholds in 8.xlsx.  The fifth derived field, kcalperc, is estimated
@@ -50,7 +50,7 @@ CLASSIFIER_FIELDS = ("ethanol..v.v.", "bitterness", "color.EBC.", "acetic_acid.g
 
 
 def physical_map(x: pd.DataFrame, calibrated: pd.DataFrame, thresholds: dict[str, float]) -> dict:
-    """Identify raw versus log10 columns by matching the same beers in 8.xlsx."""
+    """通过匹配 8.xlsx 中的同一批啤酒，识别原始列与 log10 列。"""
     mapping = {}
     xa = x.set_index("beer").sort_index()
     ca = calibrated.set_index("beer").sort_index()
@@ -123,7 +123,7 @@ def fit_generator(x: np.ndarray, styles: np.ndarray) -> dict:
     var = s ** 2 / max(len(x) - 1, 1)
     cumulative = np.cumsum(var) / np.sum(var)
     d90 = int(np.searchsorted(cumulative, 0.90) + 1)
-    d = d90  # no cap below the claimed 90% threshold
+    d = d90  # 不在声称的 90% 阈值以下设置上限。
     score = (latent - center) @ vt[:d].T
     return {"x": x, "median": med, "styles": np.asarray(styles), "center": center,
             "vt": vt[:d], "score": score, "d": d, "variance_retained": float(cumulative[d - 1]),
@@ -162,7 +162,7 @@ def draw_conditional(model: dict, style: str, count: int, rng: np.random.Generat
     mu = pool.mean(axis=0)
     ids_a = rng.integers(0, len(pool), size=count)
     ids_b = rng.integers(0, len(pool), size=count)
-    # Prevent exact self-mixes while retaining stochastic interpolation.
+    # 保留随机插值，同时避免样本与自身的精确混合。
     ids_b = np.where(ids_b == ids_a, (ids_b + 1) % len(pool), ids_b)
     weight = rng.uniform(0.15, 0.85, size=(count, 1))
     expected_mix_variance = 0.5 + 2 * (0.7 ** 2 / 12)
@@ -192,7 +192,7 @@ def nearest_distance(a: np.ndarray, b: np.ndarray) -> np.ndarray:
 
 
 def fit_binary_classifier(x: np.ndarray, y: np.ndarray, ridge: float = 0.20) -> dict:
-    """Small ridge logistic model, separate from the generative PCA space."""
+    """小型 ridge-logistic 模型，与生成式 PCA 潜空间分开拟合。"""
     x = np.asarray(x, float)
     y = np.asarray(y, float)
     med = np.nanmedian(x, axis=0)
@@ -223,7 +223,7 @@ def predict_binary_classifier(model: dict, x: np.ndarray) -> np.ndarray:
 
 def fit_sensory_predictor(chem: pd.DataFrame, sensory: pd.DataFrame,
                           feature_cols: list[str], target_cols: list[str]) -> PanelPredictor:
-    """Use the exact Q1 scorer, fitted on the frozen 238-beer development set."""
+    """使用在冻结的 238 个啤酒开发集上拟合的原问题一评分器。"""
     profile = fit_fixed_panel_predictor(chem.set_index("beer"), sensory.set_index("beer"))
     assert profile.feature_cols == feature_cols
     assert profile.target_cols == target_cols
@@ -254,8 +254,8 @@ def main() -> None:
     sensory_fields = [col for col in SENSORY_COLUMNS if col in sensory]
     assert len(all_features) == 231 and len(base_fields) == 226 and len(sensory_fields) == 50
 
-    # Stratified 20% holdout, performed before learning either the copula or
-    # the style means. It is a diagnostic, not an independent brewery cohort.
+    # 在学习 copula 和
+    # 风格均值之前按分层方式留出 20% 样本。该留出仅用于诊断，不代表独立酒厂队列。
     styles = chem.tasting_category_fine.to_numpy(str)
     holdout = np.zeros(len(chem), bool)
     for style in np.unique(styles):
@@ -360,15 +360,15 @@ def main() -> None:
                                       ((gen_mean - obs_mean) / profile.development_target_sd) ** 2)))})
     pd.DataFrame(sensory_alignment).to_csv(HERE / "results" / "q3_sensory_alignment.csv", index=False, encoding="utf-8-sig")
 
-    # Target transport: retain each Pils/Lager sample's deviation from its
-    # style center and move it toward the Tripel center. The decoded change
-    # is anchored to the original raw sample, keeping alpha=0 exact.
+    # 目标迁移：保留每个 Pils/Lager 样本相对于其
+    # 风格中心的偏差，并将其向 Tripel 中心移动。解码后的变化
+    # 以原始样本为锚点，因此 alpha=0 时保持完全不变。
     src_idx = np.flatnonzero(styles == "Pils/Lager")
     src_observed = chem.loc[src_idx, all_features].reset_index(drop=True)
     src_base = src_observed[base_fields].to_numpy(float)
     src_missing = ~np.isfinite(src_base)
-    # Original missing values do not define a no-worsening baseline. Use the
-    # Pils/Lager median for transport, and mark those cells unverifiable.
+    # 原始缺失值无法定义“不变差”基线，因此使用
+    # Pils/Lager 中位数进行迁移，并将对应单元格标记为不可核验。
     style_median = np.nanmedian(chem.loc[styles == "Pils/Lager", base_fields].to_numpy(float), axis=0)
     style_median = np.where(np.isfinite(style_median), style_median, full_model["median"])
     src_base = np.where(src_missing, style_median[None, :], src_base)
@@ -401,14 +401,14 @@ def main() -> None:
         valid = []
         for k, alpha in enumerate(alphas):
             pos = k * len(src_idx) + i
-            # Comparing only rounded 0--6 levels can hide an increase inside
-            # one level.  Constrain the continuous Q1 prediction as well.
+            # 只比较四舍五入后的 0--6 等级，可能掩盖同一等级内部的增加。
+            # 因此同时约束问题一的连续预测值。
             if (candidate_raw_pred[pos, stale_col] <= source_raw_prediction[i, stale_col] + 1e-10
                     and candidate_scores[pos, stale_col] <= source_scores[i, stale_col]):
                 valid.append((pos, alpha))
         assert valid
-        # Pick the admissible candidate closest to target centroid; if every
-        # candidate worsens target distance, retain the source spectrum.
+        # 选择距离目标质心最近的可行候选；若所有
+        # 候选都会增大目标距离，则保留源样本光谱。
         source_dist = float(np.linalg.norm(src_z[i] - center_target))
         best = (source_dist, 0, 0.0)
         for pos, alpha in valid:
@@ -421,10 +421,10 @@ def main() -> None:
         fallback_raw_pred = None
         search_stage = "primary_grid" if best[2] > 0 else "unchanged"
         if best[2] == 0.0:
-            # Fixed second-stage search for sources blocked along the single
-            # centroid direction.  Exactly 400 predeclared candidates: each
-            # alpha on the 0.1--1.0 grid receives 40 Gaussian perturbations
-            # with 0.15 global latent SD.  No sensory ground truth is used.
+            # 对沿单一
+            # 质心方向受阻的源样本执行固定的第二阶段搜索。候选共 400 个：每个
+            # alpha 取 0.1--1.0 网格中的一个值，并配套 40 个高斯扰动
+            # （全局潜变量标准差为 0.15）。搜索过程中不使用感官真值。
             local_rng = np.random.default_rng(SEED + int(chem.loc[source_row, "beer"]))
             trial_alpha = np.repeat(np.linspace(0.1, 1.0, 10), 40)
             trial_z = (src_z[i][None, :] +
@@ -486,9 +486,9 @@ def main() -> None:
     migrated.to_csv(HERE / "results" / "q3_PilsLager_to_Tripel.csv", index=False, encoding="utf-8-sig")
     transfer.to_csv(HERE / "results" / "q3_transfer_validation.csv", index=False, encoding="utf-8-sig")
 
-    # An independent, chemistry-marker-only ridge-logistic discriminator is
-    # used as a secondary check. It is not calibrated on new breweries, so
-    # probabilities are descriptive classifier outputs, not success rates.
+    # 另使用一个仅基于化学标志物的独立 ridge-logistic 判别器
+    # 作为次级核验。该模型未在新酒厂样本上校准，因此
+    # 输出概率只表示分类器描述性结果，不应解释为成功率。
     two_styles = np.isin(styles, ("Pils/Lager", "Tripel"))
     real_x = chem.loc[two_styles, CLASSIFIER_FIELDS].to_numpy(float)
     real_y = (styles[two_styles] == "Tripel").astype(float)
@@ -556,7 +556,7 @@ def main() -> None:
                         transfer.stale_hops_continuous_after - transfer.stale_hops_continuous_before))})
     pd.DataFrame(defects).to_csv(HERE / "results" / "q3_defect_audit.csv", index=False, encoding="utf-8-sig")
 
-    # Machine-readable conditions and independent checks for the paper.
+    # 为论文提供机器可读的判定条件和独立核验结果。
     model_audit = {
         "input_beers": len(chem), "base_features": len(base_fields), "derived_features": len(DERIVED),
         "sensory_proxy_dimensions": len(sensory_fields), "styles": len(np.unique(styles)),
@@ -594,7 +594,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
-
-

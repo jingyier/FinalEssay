@@ -1,4 +1,6 @@
-"""Small runtime compatibility helpers required by the Question 3 generator."""
+"""问题三所需的兼容性数学工具函数。"""
+
+
 from __future__ import annotations
 import math
 import numpy as np
@@ -16,7 +18,7 @@ SENSORY_COLUMNS = [
 ]
 
 def normal_ppf(p: np.ndarray) -> np.ndarray:
-    """Acklam rational approximation to the standard-normal quantile."""
+    """使用 Acklam 有理逼近计算标准正态分位数。"""
     p = np.clip(np.asarray(p, float), 1e-10, 1.0 - 1e-10)
     a = [-39.6968302866538, 220.946098424521, -275.928510446969,
          138.357751867269, -30.6647980661472, 2.50662827745924]
